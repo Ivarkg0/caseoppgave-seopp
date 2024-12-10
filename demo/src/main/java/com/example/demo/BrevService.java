@@ -6,4 +6,7 @@ import org.springframework.stereotype.Service;
 public class BrevService {
     public void sendAvtale() {
     }
+
+    public void sendAvtale(KundeDTO kunde, AvtaleDTO avtale) {
+    }
 }

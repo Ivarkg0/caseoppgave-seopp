@@ -17,21 +17,22 @@ public class AvtaleService {
 
         // Opprett kunde fagsystem
 
-        avtaleProvider.opprettKunde();
+        final KundeDTO kunde = avtaleProvider.opprettKunde();
 
         // Opprett avtale fagsystem
 
-        avtaleProvider.opprettAvtale();
+        final AvtaleDTO avtale = avtaleProvider.opprettAvtale();
 
         // Send avtale til kunde
 
-        brevService.sendAvtale();
+        brevService.sendAvtale(kunde, avtale);
 
         // Oppdater status i avtale fagsystem
 
         avtaleProvider.oppdaterStatus();
 
         // Send Avtalenummer og status til klient
-        return "Avtalenummer: 1234 \nStatus: Tilbud Sendt";
+        //return "Avtalenummer: " + avtale.getAvtaleNummer() + " \nStatus: " + avtale.getStatus();
+        return "Avtalenummer: 1234";
     }
 }

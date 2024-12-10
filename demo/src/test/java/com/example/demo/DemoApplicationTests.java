@@ -3,11 +3,17 @@ package com.example.demo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 class DemoApplicationTests {
 
+    private AvtaleService avtaleResource;
+
     @Test
-    void contextLoads() {
+    void avtaleServiceReturnsString() {
+        final String result  = avtaleResource.opprettAvtale();
+        assertEquals("Avtale opprettet", result);
     }
 
 }
