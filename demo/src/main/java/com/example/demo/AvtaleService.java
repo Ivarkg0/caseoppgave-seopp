@@ -17,11 +17,11 @@ public class AvtaleService {
 
         // Opprett kunde fagsystem
 
-        final KundeDTO kunde = avtaleProvider.opprettKunde();
+        final KundeDTO kunde = avtaleProvider.opprettKunde(request);
 
         // Opprett avtale fagsystem
 
-        final AvtaleDTO avtale = avtaleProvider.opprettAvtale();
+        final AvtaleDTO avtale = avtaleProvider.opprettAvtale(kunde);
 
         // Send avtale til kunde
 
@@ -29,9 +29,9 @@ public class AvtaleService {
 
         // Oppdater status i avtale fagsystem
 
-        avtaleProvider.oppdaterStatus();
+        final AvtaleDTO responseStatus = avtaleProvider.oppdaterStatus();
 
         // Send Avtalenummer og status til klient
-        return KlientReponse.builder().avtaleNummer(avtale.getAvtaleNummer()).staus(avtale.getStatus()).build();
+        return KlientReponse.builder().avtaleNummer(avtale.getAvtaleNummer()).staus(responseStatus.getStatus()).build();
     }
 }
