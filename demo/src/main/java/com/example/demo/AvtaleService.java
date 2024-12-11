@@ -13,7 +13,7 @@ public class AvtaleService {
         this.brevService = brevService;
     }
 
-    public String opprettAvtale() {
+    public KlientReponse opprettAvtale(KlientRequest request) {
 
         // Opprett kunde fagsystem
 
@@ -32,7 +32,6 @@ public class AvtaleService {
         avtaleProvider.oppdaterStatus();
 
         // Send Avtalenummer og status til klient
-        //return "Avtalenummer: " + avtale.getAvtaleNummer() + " \nStatus: " + avtale.getStatus();
-        return "Avtalenummer: 1234";
+        return KlientReponse.builder().avtaleNummer(avtale.getAvtaleNummer()).staus(avtale.getStatus()).build();
     }
 }

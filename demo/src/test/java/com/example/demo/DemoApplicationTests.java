@@ -14,8 +14,15 @@ class DemoApplicationTests {
 
     @Test
     void avtaleServiceReturnsString() {
-        final String result  = avtaleService.opprettAvtale();
-        assertEquals("Avtalenummer: 1234", result);
+        final KlientReponse result  = avtaleService.opprettAvtale(new KlientRequest(
+                "1234",
+                "testPerson",
+                "Adressevegen 1",
+                "test@test.com",
+                "Detaljer"));
+
+        assertEquals("1234", result.avtaleNummer);
+        assertEquals("Tilbud Sendt", result.staus);
     }
 
 }
