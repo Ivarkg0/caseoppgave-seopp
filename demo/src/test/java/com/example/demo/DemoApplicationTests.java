@@ -8,12 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class DemoApplicationTests {
 
-    private AvtaleService avtaleResource;
+    private final BrevService brevService = new BrevService();
+    private final AvtaleProvider avtaleProvider = new AvtaleProvider();
+    private final AvtaleService avtaleService = new AvtaleService(avtaleProvider, brevService);
 
     @Test
     void avtaleServiceReturnsString() {
-        final String result  = avtaleResource.opprettAvtale();
-        assertEquals("Avtale opprettet", result);
+        final String result  = avtaleService.opprettAvtale();
+        assertEquals("Avtalenummer: 1234", result);
     }
 
 }
