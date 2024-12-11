@@ -1,8 +1,7 @@
 package com.example.demo;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AvtaleResource {
@@ -13,10 +12,9 @@ public class AvtaleResource {
         this.avtaleService = avtaleService;
     }
 
-    //@PostMapping("/api/avtale")
-    @GetMapping("/api/avtale")
-    public String opprettAvtale() {
-        return avtaleService.opprettAvtale();
+    @PostMapping("/api/avtale")
+    public @ResponseBody KlientReponse opprettAvtale(@RequestBody KlientRequest request) {
+        return avtaleService.opprettAvtale(request);
     }
 }
 

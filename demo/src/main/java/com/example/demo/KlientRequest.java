@@ -9,8 +9,10 @@ import lombok.Value;
 @Setter
 @Value
 @Builder
-public class AvtaleDTO {
-    String avtaleNummer;
-    String kundeID;
-    String status;
+public class KlientRequest {
+    String KlientID;
+    String navn;
+    String adresse;
+    String epost;
+    String avtaledetaljer;
 }

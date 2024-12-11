@@ -13,15 +13,15 @@ public class AvtaleService {
         this.brevService = brevService;
     }
 
-    public String opprettAvtale() {
+    public KlientReponse opprettAvtale(KlientRequest request) {
 
         // Opprett kunde fagsystem
 
-        final KundeDTO kunde = avtaleProvider.opprettKunde();
+        final KundeDTO kunde = avtaleProvider.opprettKunde(request);
 
         // Opprett avtale fagsystem
 
-        final AvtaleDTO avtale = avtaleProvider.opprettAvtale();
+        final AvtaleDTO avtale = avtaleProvider.opprettAvtale(kunde);
 
         // Send avtale til kunde
 
@@ -29,10 +29,9 @@ public class AvtaleService {
 
         // Oppdater status i avtale fagsystem
 
-        avtaleProvider.oppdaterStatus();
+        final AvtaleDTO responseStatus = avtaleProvider.oppdaterStatus();
 
         // Send Avtalenummer og status til klient
-        //return "Avtalenummer: " + avtale.getAvtaleNummer() + " \nStatus: " + avtale.getStatus();
-        return "Avtalenummer: 1234";
+        return KlientReponse.builder().avtaleNummer(avtale.getAvtaleNummer()).staus(responseStatus.getStatus()).build();
     }
 }
